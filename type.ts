@@ -44,7 +44,9 @@ type User = {
   sex: Sex;
 };
 
-// Get user by id
+/**
+ * Get user by id
+ */
 type GetUserById = BaseApi<{
   url: "/users/{userId}";
   method: "GET";
