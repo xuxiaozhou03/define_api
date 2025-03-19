@@ -41,6 +41,7 @@ const simplifiedASTs = sourceFiles.map((sourceFile) =>
 const parse = (ast) => {
   if (ast.kind === "EnumDeclaration") {
     return {
+      kind: "EnumDeclaration",
       comments: ast.comments,
       identifier: ast.children.find((child) => child.kind === "Identifier")
         .text,
