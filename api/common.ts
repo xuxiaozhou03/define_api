@@ -2,9 +2,9 @@ export type Api<
   T extends {
     url: string;
     method: "GET" | "POST" | "PUT" | "DELETE";
-    paths?: Record<string, string> | undefined;
-    params?: {};
-    body?: {};
+    paths?: Record<string, string | number>;
+    params?: Record<string, string | number>;
+    body?: Record<string, unknown>;
     response: {
       200?: any;
       201?: any;
