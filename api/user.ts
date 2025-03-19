@@ -1,4 +1,5 @@
-import { Api, User } from "./common";
+import { User } from "./common";
+import { Api } from "./helper";
 
 /**
  * 获取用户

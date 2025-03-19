@@ -1,9 +1,13 @@
 import * as ts from "typescript";
 import fs from "fs";
+import { getComments } from "./utils.js";
 
 // 获取api目录下的所有文件
 const apiDir = "./api";
-const filePaths = fs.readdirSync(apiDir).map((file) => `${apiDir}/${file}`);
+const filePaths = fs
+  .readdirSync(apiDir)
+  .filter((file) => file !== "helper.ts")
+  .map((file) => `${apiDir}/${file}`);
 
 const sourceFiles = filePaths.map((filePath) =>
   ts.createSourceFile(
@@ -13,41 +17,65 @@ const sourceFiles = filePaths.map((filePath) =>
   )
 );
 
-function getComments(node, sourceFile) {
-  const leadingComments =
-    ts.getLeadingCommentRanges(sourceFile.getFullText(), node.pos) || [];
-  const trailingComments =
-    ts.getTrailingCommentRanges(sourceFile.getFullText(), node.end) || [];
-
-  const comments = [...leadingComments, ...trailingComments].map((comment) =>
-    sourceFile.getFullText().slice(comment.pos, comment.end).trim()
-  );
-
-  return comments;
-}
-
-// Function to traverse the AST
-function traverseAST(node, sourceFile) {
+function extractSimplifiedAST(node, sourceFile) {
   const kind = ts.SyntaxKind[node.kind];
-
-  const nodeData = {
+  const simplifiedNode = {
     kind,
     text: node.getText(sourceFile),
-    comments: getComments(node, sourceFile),
-    children: [], // Nested array for child nodes
+    comments: getComments(node, sourceFile), // Include comments
+    children: [],
   };
 
   ts.forEachChild(node, (child) => {
-    nodeData.children.push(traverseAST(child, sourceFile)); // Recursively add child nodes
+    simplifiedNode.children.push(extractSimplifiedAST(child, sourceFile));
   });
 
-  return nodeData;
+  return simplifiedNode;
 }
 
-// Traverse all source files and combine their ASTs
-const astTrees = sourceFiles.map((sourceFile) =>
-  traverseAST(sourceFile, sourceFile)
+// Extract simplified ASTs for all source files
+const simplifiedASTs = sourceFiles.map((sourceFile) =>
+  extractSimplifiedAST(sourceFile, sourceFile)
 );
 
-// Output the combined structure
-fs.writeFileSync("./ast.json", JSON.stringify(astTrees, null, 2));
+const parse = (ast) => {
+  if (ast.kind === "EnumDeclaration") {
+    return {
+      comments: ast.comments,
+      identifier: ast.children.find((child) => child.kind === "Identifier")
+        .text,
+      members: ast.children
+        .filter((child) => child.kind === "EnumMember")
+        .map((child) => {
+          return {
+            comments: child.comments,
+            identifier: child.children.find(
+              (child) => child.kind === "Identifier"
+            ).text,
+            stringLiteral: child.children.find(
+              (child) => child.kind === "StringLiteral"
+            ).text,
+          };
+        }),
+    };
+  }
+
+  if (ast.kind === "TypeAliasDeclaration") {
+    return {
+      comments: ast.comments,
+      identifier: ast.children.find((child) => child.kind === "Identifier")
+        .text,
+    };
+  }
+  console.log();
+};
+
+const data = simplifiedASTs.map((simplifiedAST) => {
+  return simplifiedAST.children.map(parse);
+});
+console.log(JSON.stringify(data, null, 2));
+// Output the simplified ASTs
+fs.writeFileSync(
+  "./simplified_ast.json",
+  JSON.stringify(simplifiedASTs, null, 2)
+);
