@@ -1,0 +1,1616 @@
+[
+  {
+    "kind": "SourceFile",
+    "text": "export type BaseApi<\n  T extends {\n    url: string;\n    method: \"GET\" | \"POST\" | \"PUT\" | \"DELETE\";\n    paths?: Record<string, string> | undefined;\n    params?: {};\n    body?: {};\n    response: {};\n  }\n> = {\n  url: T[\"url\"];\n  method: T[\"method\"];\n  paths: T[\"paths\"];\n  params: T[\"params\"];\n  body: T[\"body\"];\n  response: T[\"response\"];\n};\n\n/**\n * 性别枚举\n */\nenum Sex {\n  /**\n   * 男\n   */\n  Man = \"man\",\n  /**\n   * 女\n   */\n  Woman = \"woman\",\n}\n\nexport type User = {\n  /**\n   * id\n   * @default 2\n   */\n  id: string;\n  /**\n   * 姓名\n   */\n  name: string;\n  /**\n   * 性别\n   */\n  sex: Sex;\n};\n",
+    "comments": [],
+    "children": [
+      {
+        "kind": "TypeAliasDeclaration",
+        "text": "export type BaseApi<\n  T extends {\n    url: string;\n    method: \"GET\" | \"POST\" | \"PUT\" | \"DELETE\";\n    paths?: Record<string, string> | undefined;\n    params?: {};\n    body?: {};\n    response: {};\n  }\n> = {\n  url: T[\"url\"];\n  method: T[\"method\"];\n  paths: T[\"paths\"];\n  params: T[\"params\"];\n  body: T[\"body\"];\n  response: T[\"response\"];\n};",
+        "comments": [],
+        "children": [
+          {
+            "kind": "ExportKeyword",
+            "text": "export",
+            "comments": [],
+            "children": []
+          },
+          {
+            "kind": "Identifier",
+            "text": "BaseApi",
+            "comments": [],
+            "children": []
+          },
+          {
+            "kind": "TypeParameter",
+            "text": "T extends {\n    url: string;\n    method: \"GET\" | \"POST\" | \"PUT\" | \"DELETE\";\n    paths?: Record<string, string> | undefined;\n    params?: {};\n    body?: {};\n    response: {};\n  }",
+            "comments": [],
+            "children": [
+              {
+                "kind": "Identifier",
+                "text": "T",
+                "comments": [],
+                "children": []
+              },
+              {
+                "kind": "TypeLiteral",
+                "text": "{\n    url: string;\n    method: \"GET\" | \"POST\" | \"PUT\" | \"DELETE\";\n    paths?: Record<string, string> | undefined;\n    params?: {};\n    body?: {};\n    response: {};\n  }",
+                "comments": [],
+                "children": [
+                  {
+                    "kind": "PropertySignature",
+                    "text": "url: string;",
+                    "comments": [],
+                    "children": [
+                      {
+                        "kind": "Identifier",
+                        "text": "url",
+                        "comments": [],
+                        "children": []
+                      },
+                      {
+                        "kind": "StringKeyword",
+                        "text": "string",
+                        "comments": [],
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "PropertySignature",
+                    "text": "method: \"GET\" | \"POST\" | \"PUT\" | \"DELETE\";",
+                    "comments": [],
+                    "children": [
+                      {
+                        "kind": "Identifier",
+                        "text": "method",
+                        "comments": [],
+                        "children": []
+                      },
+                      {
+                        "kind": "UnionType",
+                        "text": "\"GET\" | \"POST\" | \"PUT\" | \"DELETE\"",
+                        "comments": [],
+                        "children": [
+                          {
+                            "kind": "LiteralType",
+                            "text": "\"GET\"",
+                            "comments": [],
+                            "children": [
+                              {
+                                "kind": "StringLiteral",
+                                "text": "\"GET\"",
+                                "comments": [],
+                                "children": []
+                              }
+                            ]
+                          },
+                          {
+                            "kind": "LiteralType",
+                            "text": "\"POST\"",
+                            "comments": [],
+                            "children": [
+                              {
+                                "kind": "StringLiteral",
+                                "text": "\"POST\"",
+                                "comments": [],
+                                "children": []
+                              }
+                            ]
+                          },
+                          {
+                            "kind": "LiteralType",
+                            "text": "\"PUT\"",
+                            "comments": [],
+                            "children": [
+                              {
+                                "kind": "StringLiteral",
+                                "text": "\"PUT\"",
+                                "comments": [],
+                                "children": []
+                              }
+                            ]
+                          },
+                          {
+                            "kind": "LiteralType",
+                            "text": "\"DELETE\"",
+                            "comments": [],
+                            "children": [
+                              {
+                                "kind": "StringLiteral",
+                                "text": "\"DELETE\"",
+                                "comments": [],
+                                "children": []
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "PropertySignature",
+                    "text": "paths?: Record<string, string> | undefined;",
+                    "comments": [],
+                    "children": [
+                      {
+                        "kind": "Identifier",
+                        "text": "paths",
+                        "comments": [],
+                        "children": []
+                      },
+                      {
+                        "kind": "QuestionToken",
+                        "text": "?",
+                        "comments": [],
+                        "children": []
+                      },
+                      {
+                        "kind": "UnionType",
+                        "text": "Record<string, string> | undefined",
+                        "comments": [],
+                        "children": [
+                          {
+                            "kind": "TypeReference",
+                            "text": "Record<string, string>",
+                            "comments": [],
+                            "children": [
+                              {
+                                "kind": "Identifier",
+                                "text": "Record",
+                                "comments": [],
+                                "children": []
+                              },
+                              {
+                                "kind": "StringKeyword",
+                                "text": "string",
+                                "comments": [],
+                                "children": []
+                              },
+                              {
+                                "kind": "StringKeyword",
+                                "text": "string",
+                                "comments": [],
+                                "children": []
+                              }
+                            ]
+                          },
+                          {
+                            "kind": "UndefinedKeyword",
+                            "text": "undefined",
+                            "comments": [],
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "PropertySignature",
+                    "text": "params?: {};",
+                    "comments": [],
+                    "children": [
+                      {
+                        "kind": "Identifier",
+                        "text": "params",
+                        "comments": [],
+                        "children": []
+                      },
+                      {
+                        "kind": "QuestionToken",
+                        "text": "?",
+                        "comments": [],
+                        "children": []
+                      },
+                      {
+                        "kind": "TypeLiteral",
+                        "text": "{}",
+                        "comments": [],
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "PropertySignature",
+                    "text": "body?: {};",
+                    "comments": [],
+                    "children": [
+                      {
+                        "kind": "Identifier",
+                        "text": "body",
+                        "comments": [],
+                        "children": []
+                      },
+                      {
+                        "kind": "QuestionToken",
+                        "text": "?",
+                        "comments": [],
+                        "children": []
+                      },
+                      {
+                        "kind": "TypeLiteral",
+                        "text": "{}",
+                        "comments": [],
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "PropertySignature",
+                    "text": "response: {};",
+                    "comments": [],
+                    "children": [
+                      {
+                        "kind": "Identifier",
+                        "text": "response",
+                        "comments": [],
+                        "children": []
+                      },
+                      {
+                        "kind": "TypeLiteral",
+                        "text": "{}",
+                        "comments": [],
+                        "children": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "TypeLiteral",
+            "text": "{\n  url: T[\"url\"];\n  method: T[\"method\"];\n  paths: T[\"paths\"];\n  params: T[\"params\"];\n  body: T[\"body\"];\n  response: T[\"response\"];\n}",
+            "comments": [],
+            "children": [
+              {
+                "kind": "PropertySignature",
+                "text": "url: T[\"url\"];",
+                "comments": [],
+                "children": [
+                  {
+                    "kind": "Identifier",
+                    "text": "url",
+                    "comments": [],
+                    "children": []
+                  },
+                  {
+                    "kind": "IndexedAccessType",
+                    "text": "T[\"url\"]",
+                    "comments": [],
+                    "children": [
+                      {
+                        "kind": "TypeReference",
+                        "text": "T",
+                        "comments": [],
+                        "children": [
+                          {
+                            "kind": "Identifier",
+                            "text": "T",
+                            "comments": [],
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "LiteralType",
+                        "text": "\"url\"",
+                        "comments": [],
+                        "children": [
+                          {
+                            "kind": "StringLiteral",
+                            "text": "\"url\"",
+                            "comments": [],
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "kind": "PropertySignature",
+                "text": "method: T[\"method\"];",
+                "comments": [],
+                "children": [
+                  {
+                    "kind": "Identifier",
+                    "text": "method",
+                    "comments": [],
+                    "children": []
+                  },
+                  {
+                    "kind": "IndexedAccessType",
+                    "text": "T[\"method\"]",
+                    "comments": [],
+                    "children": [
+                      {
+                        "kind": "TypeReference",
+                        "text": "T",
+                        "comments": [],
+                        "children": [
+                          {
+                            "kind": "Identifier",
+                            "text": "T",
+                            "comments": [],
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "LiteralType",
+                        "text": "\"method\"",
+                        "comments": [],
+                        "children": [
+                          {
+                            "kind": "StringLiteral",
+                            "text": "\"method\"",
+                            "comments": [],
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "kind": "PropertySignature",
+                "text": "paths: T[\"paths\"];",
+                "comments": [],
+                "children": [
+                  {
+                    "kind": "Identifier",
+                    "text": "paths",
+                    "comments": [],
+                    "children": []
+                  },
+                  {
+                    "kind": "IndexedAccessType",
+                    "text": "T[\"paths\"]",
+                    "comments": [],
+                    "children": [
+                      {
+                        "kind": "TypeReference",
+                        "text": "T",
+                        "comments": [],
+                        "children": [
+                          {
+                            "kind": "Identifier",
+                            "text": "T",
+                            "comments": [],
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "LiteralType",
+                        "text": "\"paths\"",
+                        "comments": [],
+                        "children": [
+                          {
+                            "kind": "StringLiteral",
+                            "text": "\"paths\"",
+                            "comments": [],
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "kind": "PropertySignature",
+                "text": "params: T[\"params\"];",
+                "comments": [],
+                "children": [
+                  {
+                    "kind": "Identifier",
+                    "text": "params",
+                    "comments": [],
+                    "children": []
+                  },
+                  {
+                    "kind": "IndexedAccessType",
+                    "text": "T[\"params\"]",
+                    "comments": [],
+                    "children": [
+                      {
+                        "kind": "TypeReference",
+                        "text": "T",
+                        "comments": [],
+                        "children": [
+                          {
+                            "kind": "Identifier",
+                            "text": "T",
+                            "comments": [],
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "LiteralType",
+                        "text": "\"params\"",
+                        "comments": [],
+                        "children": [
+                          {
+                            "kind": "StringLiteral",
+                            "text": "\"params\"",
+                            "comments": [],
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "kind": "PropertySignature",
+                "text": "body: T[\"body\"];",
+                "comments": [],
+                "children": [
+                  {
+                    "kind": "Identifier",
+                    "text": "body",
+                    "comments": [],
+                    "children": []
+                  },
+                  {
+                    "kind": "IndexedAccessType",
+                    "text": "T[\"body\"]",
+                    "comments": [],
+                    "children": [
+                      {
+                        "kind": "TypeReference",
+                        "text": "T",
+                        "comments": [],
+                        "children": [
+                          {
+                            "kind": "Identifier",
+                            "text": "T",
+                            "comments": [],
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "LiteralType",
+                        "text": "\"body\"",
+                        "comments": [],
+                        "children": [
+                          {
+                            "kind": "StringLiteral",
+                            "text": "\"body\"",
+                            "comments": [],
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "kind": "PropertySignature",
+                "text": "response: T[\"response\"];",
+                "comments": [],
+                "children": [
+                  {
+                    "kind": "Identifier",
+                    "text": "response",
+                    "comments": [],
+                    "children": []
+                  },
+                  {
+                    "kind": "IndexedAccessType",
+                    "text": "T[\"response\"]",
+                    "comments": [],
+                    "children": [
+                      {
+                        "kind": "TypeReference",
+                        "text": "T",
+                        "comments": [],
+                        "children": [
+                          {
+                            "kind": "Identifier",
+                            "text": "T",
+                            "comments": [],
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "LiteralType",
+                        "text": "\"response\"",
+                        "comments": [],
+                        "children": [
+                          {
+                            "kind": "StringLiteral",
+                            "text": "\"response\"",
+                            "comments": [],
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "kind": "EnumDeclaration",
+        "text": "enum Sex {\n  /**\n   * 男\n   */\n  Man = \"man\",\n  /**\n   * 女\n   */\n  Woman = \"woman\",\n}",
+        "comments": [
+          "/**\n * 性别枚举\n */"
+        ],
+        "children": [
+          {
+            "kind": "Identifier",
+            "text": "Sex",
+            "comments": [],
+            "children": []
+          },
+          {
+            "kind": "EnumMember",
+            "text": "Man = \"man\"",
+            "comments": [
+              "/**\n   * 男\n   */"
+            ],
+            "children": [
+              {
+                "kind": "Identifier",
+                "text": "Man",
+                "comments": [
+                  "/**\n   * 男\n   */"
+                ],
+                "children": []
+              },
+              {
+                "kind": "StringLiteral",
+                "text": "\"man\"",
+                "comments": [],
+                "children": []
+              }
+            ]
+          },
+          {
+            "kind": "EnumMember",
+            "text": "Woman = \"woman\"",
+            "comments": [
+              "/**\n   * 女\n   */"
+            ],
+            "children": [
+              {
+                "kind": "Identifier",
+                "text": "Woman",
+                "comments": [
+                  "/**\n   * 女\n   */"
+                ],
+                "children": []
+              },
+              {
+                "kind": "StringLiteral",
+                "text": "\"woman\"",
+                "comments": [],
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "kind": "TypeAliasDeclaration",
+        "text": "export type User = {\n  /**\n   * id\n   * @default 2\n   */\n  id: string;\n  /**\n   * 姓名\n   */\n  name: string;\n  /**\n   * 性别\n   */\n  sex: Sex;\n};",
+        "comments": [],
+        "children": [
+          {
+            "kind": "ExportKeyword",
+            "text": "export",
+            "comments": [],
+            "children": []
+          },
+          {
+            "kind": "Identifier",
+            "text": "User",
+            "comments": [],
+            "children": []
+          },
+          {
+            "kind": "TypeLiteral",
+            "text": "{\n  /**\n   * id\n   * @default 2\n   */\n  id: string;\n  /**\n   * 姓名\n   */\n  name: string;\n  /**\n   * 性别\n   */\n  sex: Sex;\n}",
+            "comments": [],
+            "children": [
+              {
+                "kind": "PropertySignature",
+                "text": "id: string;",
+                "comments": [
+                  "/**\n   * id\n   * @default 2\n   */"
+                ],
+                "children": [
+                  {
+                    "kind": "Identifier",
+                    "text": "id",
+                    "comments": [
+                      "/**\n   * id\n   * @default 2\n   */"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "kind": "StringKeyword",
+                    "text": "string",
+                    "comments": [],
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "kind": "PropertySignature",
+                "text": "name: string;",
+                "comments": [
+                  "/**\n   * 姓名\n   */"
+                ],
+                "children": [
+                  {
+                    "kind": "Identifier",
+                    "text": "name",
+                    "comments": [
+                      "/**\n   * 姓名\n   */"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "kind": "StringKeyword",
+                    "text": "string",
+                    "comments": [],
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "kind": "PropertySignature",
+                "text": "sex: Sex;",
+                "comments": [
+                  "/**\n   * 性别\n   */"
+                ],
+                "children": [
+                  {
+                    "kind": "Identifier",
+                    "text": "sex",
+                    "comments": [
+                      "/**\n   * 性别\n   */"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "kind": "TypeReference",
+                    "text": "Sex",
+                    "comments": [],
+                    "children": [
+                      {
+                        "kind": "Identifier",
+                        "text": "Sex",
+                        "comments": [],
+                        "children": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "kind": "EndOfFileToken",
+        "text": "",
+        "comments": [],
+        "children": []
+      }
+    ]
+  },
+  {
+    "kind": "SourceFile",
+    "text": "import { BaseApi, User } from \"./common\";\n\n/**\n * Get user by id\n */\nexport type GetUser = BaseApi<{\n  url: \"/users/{userId}\";\n  method: \"GET\";\n  paths: {\n    /**\n     * 用户id\n     */\n    userId: string;\n  };\n  response: { 200: User };\n}>;\n\nexport type CreateUser = BaseApi<{\n  url: \"/users\";\n  method: \"POST\";\n  body: {\n    /**\n     * 用户\n     */\n    user: Omit<User, \"id\">;\n  };\n  response: { 201: User };\n}>;\n\nexport type UpdateUser = BaseApi<{\n  url: \"/user/{userId}\";\n  method: \"PUT\";\n  paths: {\n    /**\n     * 用户id\n     */\n    userId: string;\n  };\n  body: {\n    /**\n     * 用户\n     */\n    user: Omit<User, \"id\">;\n  };\n  response: { 201: User };\n}>;\n\nexport type DeleteUser = BaseApi<{\n  url: \"/user/{userId}\";\n  method: \"DELETE\";\n  paths: {\n    /**\n     * 用户id\n     */\n    userId: string;\n  };\n  response: { 204: null };\n}>;\n",
+    "comments": [],
+    "children": [
+      {
+        "kind": "ImportDeclaration",
+        "text": "import { BaseApi, User } from \"./common\";",
+        "comments": [],
+        "children": [
+          {
+            "kind": "ImportClause",
+            "text": "{ BaseApi, User }",
+            "comments": [],
+            "children": [
+              {
+                "kind": "NamedImports",
+                "text": "{ BaseApi, User }",
+                "comments": [],
+                "children": [
+                  {
+                    "kind": "ImportSpecifier",
+                    "text": "BaseApi",
+                    "comments": [],
+                    "children": [
+                      {
+                        "kind": "Identifier",
+                        "text": "BaseApi",
+                        "comments": [],
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "ImportSpecifier",
+                    "text": "User",
+                    "comments": [],
+                    "children": [
+                      {
+                        "kind": "Identifier",
+                        "text": "User",
+                        "comments": [],
+                        "children": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "StringLiteral",
+            "text": "\"./common\"",
+            "comments": [],
+            "children": []
+          }
+        ]
+      },
+      {
+        "kind": "TypeAliasDeclaration",
+        "text": "export type GetUser = BaseApi<{\n  url: \"/users/{userId}\";\n  method: \"GET\";\n  paths: {\n    /**\n     * 用户id\n     */\n    userId: string;\n  };\n  response: { 200: User };\n}>;",
+        "comments": [
+          "/**\n * Get user by id\n */"
+        ],
+        "children": [
+          {
+            "kind": "ExportKeyword",
+            "text": "export",
+            "comments": [
+              "/**\n * Get user by id\n */"
+            ],
+            "children": []
+          },
+          {
+            "kind": "Identifier",
+            "text": "GetUser",
+            "comments": [],
+            "children": []
+          },
+          {
+            "kind": "TypeReference",
+            "text": "BaseApi<{\n  url: \"/users/{userId}\";\n  method: \"GET\";\n  paths: {\n    /**\n     * 用户id\n     */\n    userId: string;\n  };\n  response: { 200: User };\n}>",
+            "comments": [],
+            "children": [
+              {
+                "kind": "Identifier",
+                "text": "BaseApi",
+                "comments": [],
+                "children": []
+              },
+              {
+                "kind": "TypeLiteral",
+                "text": "{\n  url: \"/users/{userId}\";\n  method: \"GET\";\n  paths: {\n    /**\n     * 用户id\n     */\n    userId: string;\n  };\n  response: { 200: User };\n}",
+                "comments": [],
+                "children": [
+                  {
+                    "kind": "PropertySignature",
+                    "text": "url: \"/users/{userId}\";",
+                    "comments": [],
+                    "children": [
+                      {
+                        "kind": "Identifier",
+                        "text": "url",
+                        "comments": [],
+                        "children": []
+                      },
+                      {
+                        "kind": "LiteralType",
+                        "text": "\"/users/{userId}\"",
+                        "comments": [],
+                        "children": [
+                          {
+                            "kind": "StringLiteral",
+                            "text": "\"/users/{userId}\"",
+                            "comments": [],
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "PropertySignature",
+                    "text": "method: \"GET\";",
+                    "comments": [],
+                    "children": [
+                      {
+                        "kind": "Identifier",
+                        "text": "method",
+                        "comments": [],
+                        "children": []
+                      },
+                      {
+                        "kind": "LiteralType",
+                        "text": "\"GET\"",
+                        "comments": [],
+                        "children": [
+                          {
+                            "kind": "StringLiteral",
+                            "text": "\"GET\"",
+                            "comments": [],
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "PropertySignature",
+                    "text": "paths: {\n    /**\n     * 用户id\n     */\n    userId: string;\n  };",
+                    "comments": [],
+                    "children": [
+                      {
+                        "kind": "Identifier",
+                        "text": "paths",
+                        "comments": [],
+                        "children": []
+                      },
+                      {
+                        "kind": "TypeLiteral",
+                        "text": "{\n    /**\n     * 用户id\n     */\n    userId: string;\n  }",
+                        "comments": [],
+                        "children": [
+                          {
+                            "kind": "PropertySignature",
+                            "text": "userId: string;",
+                            "comments": [
+                              "/**\n     * 用户id\n     */"
+                            ],
+                            "children": [
+                              {
+                                "kind": "Identifier",
+                                "text": "userId",
+                                "comments": [
+                                  "/**\n     * 用户id\n     */"
+                                ],
+                                "children": []
+                              },
+                              {
+                                "kind": "StringKeyword",
+                                "text": "string",
+                                "comments": [],
+                                "children": []
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "PropertySignature",
+                    "text": "response: { 200: User };",
+                    "comments": [],
+                    "children": [
+                      {
+                        "kind": "Identifier",
+                        "text": "response",
+                        "comments": [],
+                        "children": []
+                      },
+                      {
+                        "kind": "TypeLiteral",
+                        "text": "{ 200: User }",
+                        "comments": [],
+                        "children": [
+                          {
+                            "kind": "PropertySignature",
+                            "text": "200: User",
+                            "comments": [],
+                            "children": [
+                              {
+                                "kind": "FirstLiteralToken",
+                                "text": "200",
+                                "comments": [],
+                                "children": []
+                              },
+                              {
+                                "kind": "TypeReference",
+                                "text": "User",
+                                "comments": [],
+                                "children": [
+                                  {
+                                    "kind": "Identifier",
+                                    "text": "User",
+                                    "comments": [],
+                                    "children": []
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "kind": "TypeAliasDeclaration",
+        "text": "export type CreateUser = BaseApi<{\n  url: \"/users\";\n  method: \"POST\";\n  body: {\n    /**\n     * 用户\n     */\n    user: Omit<User, \"id\">;\n  };\n  response: { 201: User };\n}>;",
+        "comments": [],
+        "children": [
+          {
+            "kind": "ExportKeyword",
+            "text": "export",
+            "comments": [],
+            "children": []
+          },
+          {
+            "kind": "Identifier",
+            "text": "CreateUser",
+            "comments": [],
+            "children": []
+          },
+          {
+            "kind": "TypeReference",
+            "text": "BaseApi<{\n  url: \"/users\";\n  method: \"POST\";\n  body: {\n    /**\n     * 用户\n     */\n    user: Omit<User, \"id\">;\n  };\n  response: { 201: User };\n}>",
+            "comments": [],
+            "children": [
+              {
+                "kind": "Identifier",
+                "text": "BaseApi",
+                "comments": [],
+                "children": []
+              },
+              {
+                "kind": "TypeLiteral",
+                "text": "{\n  url: \"/users\";\n  method: \"POST\";\n  body: {\n    /**\n     * 用户\n     */\n    user: Omit<User, \"id\">;\n  };\n  response: { 201: User };\n}",
+                "comments": [],
+                "children": [
+                  {
+                    "kind": "PropertySignature",
+                    "text": "url: \"/users\";",
+                    "comments": [],
+                    "children": [
+                      {
+                        "kind": "Identifier",
+                        "text": "url",
+                        "comments": [],
+                        "children": []
+                      },
+                      {
+                        "kind": "LiteralType",
+                        "text": "\"/users\"",
+                        "comments": [],
+                        "children": [
+                          {
+                            "kind": "StringLiteral",
+                            "text": "\"/users\"",
+                            "comments": [],
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "PropertySignature",
+                    "text": "method: \"POST\";",
+                    "comments": [],
+                    "children": [
+                      {
+                        "kind": "Identifier",
+                        "text": "method",
+                        "comments": [],
+                        "children": []
+                      },
+                      {
+                        "kind": "LiteralType",
+                        "text": "\"POST\"",
+                        "comments": [],
+                        "children": [
+                          {
+                            "kind": "StringLiteral",
+                            "text": "\"POST\"",
+                            "comments": [],
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "PropertySignature",
+                    "text": "body: {\n    /**\n     * 用户\n     */\n    user: Omit<User, \"id\">;\n  };",
+                    "comments": [],
+                    "children": [
+                      {
+                        "kind": "Identifier",
+                        "text": "body",
+                        "comments": [],
+                        "children": []
+                      },
+                      {
+                        "kind": "TypeLiteral",
+                        "text": "{\n    /**\n     * 用户\n     */\n    user: Omit<User, \"id\">;\n  }",
+                        "comments": [],
+                        "children": [
+                          {
+                            "kind": "PropertySignature",
+                            "text": "user: Omit<User, \"id\">;",
+                            "comments": [
+                              "/**\n     * 用户\n     */"
+                            ],
+                            "children": [
+                              {
+                                "kind": "Identifier",
+                                "text": "user",
+                                "comments": [
+                                  "/**\n     * 用户\n     */"
+                                ],
+                                "children": []
+                              },
+                              {
+                                "kind": "TypeReference",
+                                "text": "Omit<User, \"id\">",
+                                "comments": [],
+                                "children": [
+                                  {
+                                    "kind": "Identifier",
+                                    "text": "Omit",
+                                    "comments": [],
+                                    "children": []
+                                  },
+                                  {
+                                    "kind": "TypeReference",
+                                    "text": "User",
+                                    "comments": [],
+                                    "children": [
+                                      {
+                                        "kind": "Identifier",
+                                        "text": "User",
+                                        "comments": [],
+                                        "children": []
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "kind": "LiteralType",
+                                    "text": "\"id\"",
+                                    "comments": [],
+                                    "children": [
+                                      {
+                                        "kind": "StringLiteral",
+                                        "text": "\"id\"",
+                                        "comments": [],
+                                        "children": []
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "PropertySignature",
+                    "text": "response: { 201: User };",
+                    "comments": [],
+                    "children": [
+                      {
+                        "kind": "Identifier",
+                        "text": "response",
+                        "comments": [],
+                        "children": []
+                      },
+                      {
+                        "kind": "TypeLiteral",
+                        "text": "{ 201: User }",
+                        "comments": [],
+                        "children": [
+                          {
+                            "kind": "PropertySignature",
+                            "text": "201: User",
+                            "comments": [],
+                            "children": [
+                              {
+                                "kind": "FirstLiteralToken",
+                                "text": "201",
+                                "comments": [],
+                                "children": []
+                              },
+                              {
+                                "kind": "TypeReference",
+                                "text": "User",
+                                "comments": [],
+                                "children": [
+                                  {
+                                    "kind": "Identifier",
+                                    "text": "User",
+                                    "comments": [],
+                                    "children": []
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "kind": "TypeAliasDeclaration",
+        "text": "export type UpdateUser = BaseApi<{\n  url: \"/user/{userId}\";\n  method: \"PUT\";\n  paths: {\n    /**\n     * 用户id\n     */\n    userId: string;\n  };\n  body: {\n    /**\n     * 用户\n     */\n    user: Omit<User, \"id\">;\n  };\n  response: { 201: User };\n}>;",
+        "comments": [],
+        "children": [
+          {
+            "kind": "ExportKeyword",
+            "text": "export",
+            "comments": [],
+            "children": []
+          },
+          {
+            "kind": "Identifier",
+            "text": "UpdateUser",
+            "comments": [],
+            "children": []
+          },
+          {
+            "kind": "TypeReference",
+            "text": "BaseApi<{\n  url: \"/user/{userId}\";\n  method: \"PUT\";\n  paths: {\n    /**\n     * 用户id\n     */\n    userId: string;\n  };\n  body: {\n    /**\n     * 用户\n     */\n    user: Omit<User, \"id\">;\n  };\n  response: { 201: User };\n}>",
+            "comments": [],
+            "children": [
+              {
+                "kind": "Identifier",
+                "text": "BaseApi",
+                "comments": [],
+                "children": []
+              },
+              {
+                "kind": "TypeLiteral",
+                "text": "{\n  url: \"/user/{userId}\";\n  method: \"PUT\";\n  paths: {\n    /**\n     * 用户id\n     */\n    userId: string;\n  };\n  body: {\n    /**\n     * 用户\n     */\n    user: Omit<User, \"id\">;\n  };\n  response: { 201: User };\n}",
+                "comments": [],
+                "children": [
+                  {
+                    "kind": "PropertySignature",
+                    "text": "url: \"/user/{userId}\";",
+                    "comments": [],
+                    "children": [
+                      {
+                        "kind": "Identifier",
+                        "text": "url",
+                        "comments": [],
+                        "children": []
+                      },
+                      {
+                        "kind": "LiteralType",
+                        "text": "\"/user/{userId}\"",
+                        "comments": [],
+                        "children": [
+                          {
+                            "kind": "StringLiteral",
+                            "text": "\"/user/{userId}\"",
+                            "comments": [],
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "PropertySignature",
+                    "text": "method: \"PUT\";",
+                    "comments": [],
+                    "children": [
+                      {
+                        "kind": "Identifier",
+                        "text": "method",
+                        "comments": [],
+                        "children": []
+                      },
+                      {
+                        "kind": "LiteralType",
+                        "text": "\"PUT\"",
+                        "comments": [],
+                        "children": [
+                          {
+                            "kind": "StringLiteral",
+                            "text": "\"PUT\"",
+                            "comments": [],
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "PropertySignature",
+                    "text": "paths: {\n    /**\n     * 用户id\n     */\n    userId: string;\n  };",
+                    "comments": [],
+                    "children": [
+                      {
+                        "kind": "Identifier",
+                        "text": "paths",
+                        "comments": [],
+                        "children": []
+                      },
+                      {
+                        "kind": "TypeLiteral",
+                        "text": "{\n    /**\n     * 用户id\n     */\n    userId: string;\n  }",
+                        "comments": [],
+                        "children": [
+                          {
+                            "kind": "PropertySignature",
+                            "text": "userId: string;",
+                            "comments": [
+                              "/**\n     * 用户id\n     */"
+                            ],
+                            "children": [
+                              {
+                                "kind": "Identifier",
+                                "text": "userId",
+                                "comments": [
+                                  "/**\n     * 用户id\n     */"
+                                ],
+                                "children": []
+                              },
+                              {
+                                "kind": "StringKeyword",
+                                "text": "string",
+                                "comments": [],
+                                "children": []
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "PropertySignature",
+                    "text": "body: {\n    /**\n     * 用户\n     */\n    user: Omit<User, \"id\">;\n  };",
+                    "comments": [],
+                    "children": [
+                      {
+                        "kind": "Identifier",
+                        "text": "body",
+                        "comments": [],
+                        "children": []
+                      },
+                      {
+                        "kind": "TypeLiteral",
+                        "text": "{\n    /**\n     * 用户\n     */\n    user: Omit<User, \"id\">;\n  }",
+                        "comments": [],
+                        "children": [
+                          {
+                            "kind": "PropertySignature",
+                            "text": "user: Omit<User, \"id\">;",
+                            "comments": [
+                              "/**\n     * 用户\n     */"
+                            ],
+                            "children": [
+                              {
+                                "kind": "Identifier",
+                                "text": "user",
+                                "comments": [
+                                  "/**\n     * 用户\n     */"
+                                ],
+                                "children": []
+                              },
+                              {
+                                "kind": "TypeReference",
+                                "text": "Omit<User, \"id\">",
+                                "comments": [],
+                                "children": [
+                                  {
+                                    "kind": "Identifier",
+                                    "text": "Omit",
+                                    "comments": [],
+                                    "children": []
+                                  },
+                                  {
+                                    "kind": "TypeReference",
+                                    "text": "User",
+                                    "comments": [],
+                                    "children": [
+                                      {
+                                        "kind": "Identifier",
+                                        "text": "User",
+                                        "comments": [],
+                                        "children": []
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "kind": "LiteralType",
+                                    "text": "\"id\"",
+                                    "comments": [],
+                                    "children": [
+                                      {
+                                        "kind": "StringLiteral",
+                                        "text": "\"id\"",
+                                        "comments": [],
+                                        "children": []
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "PropertySignature",
+                    "text": "response: { 201: User };",
+                    "comments": [],
+                    "children": [
+                      {
+                        "kind": "Identifier",
+                        "text": "response",
+                        "comments": [],
+                        "children": []
+                      },
+                      {
+                        "kind": "TypeLiteral",
+                        "text": "{ 201: User }",
+                        "comments": [],
+                        "children": [
+                          {
+                            "kind": "PropertySignature",
+                            "text": "201: User",
+                            "comments": [],
+                            "children": [
+                              {
+                                "kind": "FirstLiteralToken",
+                                "text": "201",
+                                "comments": [],
+                                "children": []
+                              },
+                              {
+                                "kind": "TypeReference",
+                                "text": "User",
+                                "comments": [],
+                                "children": [
+                                  {
+                                    "kind": "Identifier",
+                                    "text": "User",
+                                    "comments": [],
+                                    "children": []
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "kind": "TypeAliasDeclaration",
+        "text": "export type DeleteUser = BaseApi<{\n  url: \"/user/{userId}\";\n  method: \"DELETE\";\n  paths: {\n    /**\n     * 用户id\n     */\n    userId: string;\n  };\n  response: { 204: null };\n}>;",
+        "comments": [],
+        "children": [
+          {
+            "kind": "ExportKeyword",
+            "text": "export",
+            "comments": [],
+            "children": []
+          },
+          {
+            "kind": "Identifier",
+            "text": "DeleteUser",
+            "comments": [],
+            "children": []
+          },
+          {
+            "kind": "TypeReference",
+            "text": "BaseApi<{\n  url: \"/user/{userId}\";\n  method: \"DELETE\";\n  paths: {\n    /**\n     * 用户id\n     */\n    userId: string;\n  };\n  response: { 204: null };\n}>",
+            "comments": [],
+            "children": [
+              {
+                "kind": "Identifier",
+                "text": "BaseApi",
+                "comments": [],
+                "children": []
+              },
+              {
+                "kind": "TypeLiteral",
+                "text": "{\n  url: \"/user/{userId}\";\n  method: \"DELETE\";\n  paths: {\n    /**\n     * 用户id\n     */\n    userId: string;\n  };\n  response: { 204: null };\n}",
+                "comments": [],
+                "children": [
+                  {
+                    "kind": "PropertySignature",
+                    "text": "url: \"/user/{userId}\";",
+                    "comments": [],
+                    "children": [
+                      {
+                        "kind": "Identifier",
+                        "text": "url",
+                        "comments": [],
+                        "children": []
+                      },
+                      {
+                        "kind": "LiteralType",
+                        "text": "\"/user/{userId}\"",
+                        "comments": [],
+                        "children": [
+                          {
+                            "kind": "StringLiteral",
+                            "text": "\"/user/{userId}\"",
+                            "comments": [],
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "PropertySignature",
+                    "text": "method: \"DELETE\";",
+                    "comments": [],
+                    "children": [
+                      {
+                        "kind": "Identifier",
+                        "text": "method",
+                        "comments": [],
+                        "children": []
+                      },
+                      {
+                        "kind": "LiteralType",
+                        "text": "\"DELETE\"",
+                        "comments": [],
+                        "children": [
+                          {
+                            "kind": "StringLiteral",
+                            "text": "\"DELETE\"",
+                            "comments": [],
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "PropertySignature",
+                    "text": "paths: {\n    /**\n     * 用户id\n     */\n    userId: string;\n  };",
+                    "comments": [],
+                    "children": [
+                      {
+                        "kind": "Identifier",
+                        "text": "paths",
+                        "comments": [],
+                        "children": []
+                      },
+                      {
+                        "kind": "TypeLiteral",
+                        "text": "{\n    /**\n     * 用户id\n     */\n    userId: string;\n  }",
+                        "comments": [],
+                        "children": [
+                          {
+                            "kind": "PropertySignature",
+                            "text": "userId: string;",
+                            "comments": [
+                              "/**\n     * 用户id\n     */"
+                            ],
+                            "children": [
+                              {
+                                "kind": "Identifier",
+                                "text": "userId",
+                                "comments": [
+                                  "/**\n     * 用户id\n     */"
+                                ],
+                                "children": []
+                              },
+                              {
+                                "kind": "StringKeyword",
+                                "text": "string",
+                                "comments": [],
+                                "children": []
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "PropertySignature",
+                    "text": "response: { 204: null };",
+                    "comments": [],
+                    "children": [
+                      {
+                        "kind": "Identifier",
+                        "text": "response",
+                        "comments": [],
+                        "children": []
+                      },
+                      {
+                        "kind": "TypeLiteral",
+                        "text": "{ 204: null }",
+                        "comments": [],
+                        "children": [
+                          {
+                            "kind": "PropertySignature",
+                            "text": "204: null",
+                            "comments": [],
+                            "children": [
+                              {
+                                "kind": "FirstLiteralToken",
+                                "text": "204",
+                                "comments": [],
+                                "children": []
+                              },
+                              {
+                                "kind": "LiteralType",
+                                "text": "null",
+                                "comments": [],
+                                "children": [
+                                  {
+                                    "kind": "NullKeyword",
+                                    "text": "null",
+                                    "comments": [],
+                                    "children": []
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "kind": "EndOfFileToken",
+        "text": "",
+        "comments": [],
+        "children": []
+      }
+    ]
+  }
+]

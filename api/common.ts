@@ -1,11 +1,16 @@
-type BaseApi<
+export type Api<
   T extends {
     url: string;
     method: "GET" | "POST" | "PUT" | "DELETE";
     paths?: Record<string, string> | undefined;
-    params: {};
-    body: {};
-    response: {};
+    params?: {};
+    body?: {};
+    response: {
+      200?: any;
+      201?: any;
+      204?: any;
+      404?: any;
+    };
   }
 > = {
   url: T["url"];
@@ -30,43 +35,18 @@ enum Sex {
   Woman = "woman",
 }
 
-type User = {
+export type User = {
   /**
    * id
-   * @default "2"
+   * @default 2
    */
   id: string;
-  // 姓名
+  /**
+   * 姓名
+   */
   name: string;
   /**
    * 性别
    */
   sex: Sex;
 };
-
-/**
- * Get user by id
- */
-type GetUserById = BaseApi<{
-  url: "/users/{userId}";
-  method: "GET";
-  paths: {
-    /**
-     * 用户id
-     */
-    userId: string;
-  };
-  params: {
-    /**
-     * 用户名
-     */
-    name?: string;
-  };
-  body: {
-    /**
-     * 文件
-     */
-    file: FormData | string;
-  };
-  response: { 200: User };
-}>;
