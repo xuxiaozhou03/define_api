@@ -35,7 +35,8 @@
 # 生成 schema
 node cli.js
 
-# 生成 typescript 代码npx swagger-typescript-api -p ./schema.json -o ./result
+# 生成 typescript 代码
+npx swagger-typescript-api -p ./schema.json -o ./result
 ```
 
 ## 定义接口示例
