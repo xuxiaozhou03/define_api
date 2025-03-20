@@ -2,7 +2,7 @@ export type Api<
   T extends {
     url: string;
     method: "GET" | "POST" | "PUT" | "DELETE";
-    paths?: Record<string, string | number>;
+    paths?: Required<Record<string, string | number>>;
     query?: Record<string, string | number>;
     params?: Record<string, string | number>;
     body?: Record<string, unknown>;
@@ -12,7 +12,7 @@ export type Api<
       204?: any;
       404?: any;
     };
-  }
+  },
 > = {
   url: T["url"];
   method: T["method"];

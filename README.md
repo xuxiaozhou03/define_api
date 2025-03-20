@@ -22,41 +22,14 @@
 
 ## 效果
 
-1. 定义到schema
-   <img src="./define2schema.png"/>
+1. 定义接口到 openapi schema
+   <img src="./docs/define2schema.png"/>
 2. 生成前端代码
-   <img src="./ts.png"/>
+   <img src="./docs/ts.png"/>
 3. 生成文档
-   <img src="./doc.png" />
+   <img src="./docs/doc.png" />
 
-## 接口定义
-
-```typescript
-export type Api<
-  T extends {
-    url: string;
-    method: "GET" | "POST" | "PUT" | "DELETE";
-    paths?: Record<string, string> | undefined;
-    params?: {};
-    body?: {};
-    response: {
-      200?: any;
-      201?: any;
-      204?: any;
-      404?: any;
-    };
-  },
-> = {
-  url: T["url"];
-  method: T["method"];
-  paths: T["paths"];
-  params: T["params"];
-  body: T["body"];
-  response: T["response"];
-};
-```
-
-## 使用
+## 定义接口
 
 ```typescript
 import { User } from "./common";
@@ -64,7 +37,6 @@ import { Api } from "./helper";
 
 /**
  * 获取用户
- * @default 111
  */
 export type GetUser = Api<{
   url: "/user/{userId}";
@@ -74,10 +46,6 @@ export type GetUser = Api<{
      * 用户id
      */
     userId: string;
-    /**
-     * 逗你玩
-     */
-    name?: string;
   };
   response: { 200: User };
 }>;

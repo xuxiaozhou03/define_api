@@ -552,5 +552,5 @@ function extractJsDocDescription(node) {
   return { summary, description, default: defaultValue };
 }
 
-const schemas = convertDirectoryToOpenAPISchemas("./define");
-fs.writeFileSync("./schema.json", JSON.stringify(schemas, null, 2));
+const schemas = convertDirectoryToOpenAPISchemas("./example");
+fs.writeFileSync("./result/schema.json", JSON.stringify(schemas, null, 2));
