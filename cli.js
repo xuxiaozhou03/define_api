@@ -58,7 +58,8 @@ function convertDirectoryToOpenAPISchemas(dirPath) {
 
     const paths = convertInterfaceToOpenAPISchema(
       fileContent,
-      schema.definitions
+      schema.definitions,
+      file // Pass the file name
     );
     schema.paths = { ...schema.paths, ...paths };
   });
@@ -126,7 +127,7 @@ function convertDefinitions(interfaceCode, definitions) {
  * @param {string} interfaceCode - The TypeScript interface code as a string.
  * @returns {object} - The OpenAPI schema object with paths and definitions.
  */
-function convertInterfaceToOpenAPISchema(interfaceCode, definitions) {
+function convertInterfaceToOpenAPISchema(interfaceCode, definitions, fileName) {
   const sourceFile = ts.createSourceFile(
     "temp.ts",
     interfaceCode,
@@ -163,6 +164,7 @@ function convertInterfaceToOpenAPISchema(interfaceCode, definitions) {
             produces: ["application/json"],
             parameters: [],
             responses: {},
+            tags: [path.basename(fileName, ".ts")], // Use file name as tag
           };
 
           apiDefinition.members.forEach((member) => {
@@ -184,10 +186,23 @@ function convertInterfaceToOpenAPISchema(interfaceCode, definitions) {
                   ...extractParameters(member.type, definitions, "query"),
                 ];
               } else if (propertyName === "body") {
+                const formDataParameters = extractParameters(
+                  member.type,
+                  definitions,
+                  "formData"
+                );
                 pathItem.parameters = [
                   ...pathItem.parameters,
-                  ...extractParameters(member.type, definitions, "formData"),
+                  ...formDataParameters,
                 ];
+
+                // Add "consumes" property if "formData" parameters exist
+                if (formDataParameters.length > 0) {
+                  pathItem.consumes = [
+                    "application/x-www-form-urlencoded",
+                    "multipart/form-data",
+                  ];
+                }
               } else if (propertyName === "response") {
                 const responses = extractResponse(member.type, definitions);
                 Object.keys(responses).forEach((statusCode) => {
@@ -270,7 +285,7 @@ function extractResponse(typeNode, sharedTypes) {
         const responseType = resolveSharedType(member.type, sharedTypes);
 
         responses[statusCode] = {
-          ...(responseType.schema || responseType),
+          ...responseType,
           ...(defaultValue !== undefined ? { default: defaultValue } : {}),
         };
       }
@@ -320,7 +335,7 @@ function extractParameters(typeNode, sharedTypes, type) {
 /**
  * Resolves shared types from common.ts or inline definitions.
  * For simple types, it returns a direct `type`. For complex types, it uses `schema`.
- * Handles `Omit` types by creating a new definition in `definitions`.
+ * Handles `Omit` types and indexed access types like `User["sex"]`.
  * @param {ts.TypeNode} typeNode - The TypeScript type node.
  * @param {object} sharedTypes - The shared types collected from common.ts.
  * @returns {object} - The resolved schema or type.
@@ -393,6 +408,32 @@ function resolveSharedType(typeNode, sharedTypes) {
         }
       } else {
         console.error("Invalid Omit type arguments.");
+      }
+    }
+  }
+
+  // Handle indexed access types like User["sex"]
+  if (ts.isIndexedAccessTypeNode(typeNode)) {
+    const objectType = resolveSharedType(typeNode.objectType, sharedTypes);
+    const indexType = typeNode.indexType;
+
+    if (
+      ts.isLiteralTypeNode(indexType) &&
+      ts.isStringLiteral(indexType.literal)
+    ) {
+      const propertyName = indexType.literal.text;
+
+      if (objectType.schema && objectType.schema.$ref) {
+        const refName = objectType.schema.$ref.replace("#/definitions/", "");
+        const referencedType = sharedTypes[refName];
+
+        if (
+          referencedType &&
+          referencedType.properties &&
+          referencedType.properties[propertyName]
+        ) {
+          return referencedType.properties[propertyName];
+        }
       }
     }
   }

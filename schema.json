@@ -4,17 +4,13 @@
     "title": "api",
     "version": "1.0.0"
   },
-  "produces": [
-    "application/json"
-  ],
+  "produces": ["application/json"],
   "paths": {
     "/user/{userId}": {
       "get": {
         "summary": "获取用户",
         "description": "",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "parameters": [
           {
             "name": "userId",
@@ -27,16 +23,18 @@
         ],
         "responses": {
           "200": {
-            "$ref": "#/definitions/User"
+            "description": "Shared type reference",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
           }
-        }
+        },
+        "tags": ["user"]
       },
       "put": {
         "summary": "更新用户",
         "description": "",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "parameters": [
           {
             "name": "userId",
@@ -53,27 +51,29 @@
             "description": ""
           },
           {
-            "name": "user",
+            "name": "sex",
             "in": "formData",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/UserWithoutId"
-            },
-            "description": "用户"
+            "type": "string",
+            "enum": ["man", "woman"],
+            "description": ""
           }
         ],
         "responses": {
           "201": {
-            "$ref": "#/definitions/User"
+            "description": "Shared type reference",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
           }
-        }
+        },
+        "tags": ["user"],
+        "consumes": ["application/x-www-form-urlencoded", "multipart/form-data"]
       },
       "delete": {
         "summary": "删除用户",
         "description": "删除用户描述",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "parameters": [
           {
             "name": "userId",
@@ -85,26 +85,26 @@
         ],
         "responses": {
           "204": {
-            "type": "object"
+            "description": "Complex type",
+            "schema": {
+              "type": "object"
+            }
           }
-        }
+        },
+        "tags": ["user"]
       }
     },
     "/users": {
       "post": {
         "summary": "创建用户",
         "description": "",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "parameters": [
           {
-            "name": "user",
+            "name": "name",
             "in": "formData",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/UserWithoutId"
-            },
+            "type": "string",
             "description": "用户"
           },
           {
@@ -117,19 +117,21 @@
         ],
         "responses": {
           "201": {
-            "$ref": "#/definitions/User"
+            "description": "Shared type reference",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
           }
-        }
+        },
+        "tags": ["user"],
+        "consumes": ["application/x-www-form-urlencoded", "multipart/form-data"]
       }
     }
   },
   "definitions": {
     "Sex": {
       "type": "string",
-      "enum": [
-        "man",
-        "woman"
-      ],
+      "enum": ["man", "woman"],
       "description": "性别枚举"
     },
     "User": {
@@ -144,29 +146,10 @@
         },
         "sex": {
           "type": "string",
-          "enum": [
-            "man",
-            "woman"
-          ]
+          "enum": ["man", "woman"]
         }
       },
       "description": ""
-    },
-    "UserWithoutId": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "sex": {
-          "type": "string",
-          "enum": [
-            "man",
-            "woman"
-          ]
-        }
-      },
-      "description": "Omit type based on User without id"
     }
   }
 }

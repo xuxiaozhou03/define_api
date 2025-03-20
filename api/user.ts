@@ -27,7 +27,7 @@ export type CreateUser = Api<{
     /**
      * 用户
      */
-    user: Omit<User, "id">;
+    name: string;
     /**
      * 测试可选字段
      */
@@ -52,10 +52,7 @@ export type UpdateUser = Api<{
     name: string;
   };
   body: {
-    /**
-     * 用户
-     */
-    user: Omit<User, "id">;
+    sex: User["sex"];
   };
   response: { 201: User };
 }>;
