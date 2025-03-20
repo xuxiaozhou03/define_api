@@ -4,13 +4,17 @@
     "title": "api",
     "version": "1.0.0"
   },
-  "produces": ["application/json"],
+  "produces": [
+    "application/json"
+  ],
   "paths": {
     "/user/{userId}": {
       "get": {
         "summary": "获取用户",
         "description": "",
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "userId",
@@ -30,7 +34,9 @@
       "put": {
         "summary": "更新用户",
         "description": "",
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "userId",
@@ -38,6 +44,13 @@
             "required": true,
             "type": "string",
             "description": "用户id"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
           },
           {
             "name": "user",
@@ -58,7 +71,9 @@
       "delete": {
         "summary": "删除用户",
         "description": "删除用户描述",
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "userId",
@@ -79,7 +94,9 @@
       "post": {
         "summary": "创建用户",
         "description": "",
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "user",
@@ -109,7 +126,10 @@
   "definitions": {
     "Sex": {
       "type": "string",
-      "enum": ["man", "woman"],
+      "enum": [
+        "man",
+        "woman"
+      ],
       "description": "性别枚举"
     },
     "User": {
@@ -124,7 +144,10 @@
         },
         "sex": {
           "type": "string",
-          "enum": ["man", "woman"]
+          "enum": [
+            "man",
+            "woman"
+          ]
         }
       },
       "description": ""
@@ -137,7 +160,10 @@
         },
         "sex": {
           "type": "string",
-          "enum": ["man", "woman"]
+          "enum": [
+            "man",
+            "woman"
+          ]
         }
       },
       "description": "Omit type based on User without id"

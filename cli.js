@@ -178,6 +178,11 @@ function convertInterfaceToOpenAPISchema(interfaceCode, definitions) {
                   ...pathItem.parameters,
                   ...extractParameters(member.type, definitions, "path"),
                 ];
+              } else if (propertyName === "query") {
+                pathItem.parameters = [
+                  ...pathItem.parameters,
+                  ...extractParameters(member.type, definitions, "query"),
+                ];
               } else if (propertyName === "body") {
                 pathItem.parameters = [
                   ...pathItem.parameters,
