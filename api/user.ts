@@ -3,6 +3,7 @@ import { Api } from "./helper";
 
 /**
  * 获取用户
+ * @default 111
  */
 export type GetUser = Api<{
   url: "/users/{userId}";
