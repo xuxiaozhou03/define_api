@@ -8,17 +8,26 @@
 
 ## roadmap
 
-1. [x] 通过 typescript 定义接口
-       1.1 [ ] 缺少 query
-2. [ ] 生成 openapi schema
-       2.1 [ ] 支持 Typescript 的更多泛型（目前支持 Omit）
-       2.2 [ ] 支持 枚举
-       2.3 [ ] 支持 数组等复杂类型
-3. [ ] 生成文档
-       3.1 [ ] xx
-4. [ ] 生成前端接口定义（通过 swagger-typescript-api 轻松搞定）
-5. [ ] 自动测试接口返回数据
-6. [ ] 版本管理（git/或者 release）
+1. 通过 typescript 定义接口
+   1.1 缺少 query
+2. 生成 openapi schema
+   2.1 支持 Typescript 的更多泛型（目前支持 Omit）
+   2.2 支持 枚举
+   2.3 支持 数组等复杂类型
+3. 生成文档
+   3.1 xx
+4. 生成前端接口定义（通过 swagger-typescript-api 轻松搞定）
+5. 自动测试接口返回数据
+6. 版本管理（git/或者 release）
+
+## 效果
+
+1. 定义到schema
+   <img src="./define2schema.png"/>
+2. 生成前端代码
+   <img src="./ts.png"/>
+3. 生成文档
+   <img src="./doc.png" />
 
 ## 接口定义
 
@@ -36,7 +45,7 @@ export type Api<
       204?: any;
       404?: any;
     };
-  }
+  },
 > = {
   url: T["url"];
   method: T["method"];
@@ -161,7 +170,3 @@ node cli.js
   }
 }
 ```
-
-## 效果展示
-
-<img src="./pic.png" style="width:100%"/>

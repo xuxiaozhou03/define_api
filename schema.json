@@ -151,5 +151,19 @@
       },
       "description": ""
     }
-  }
+  },
+  "tags": [
+    {
+      "name": "common",
+      "description": "common related APIs"
+    },
+    {
+      "name": "helper",
+      "description": "helper related APIs"
+    },
+    {
+      "name": "user",
+      "description": "user related APIs"
+    }
+  ]
 }

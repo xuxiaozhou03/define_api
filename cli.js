@@ -42,12 +42,21 @@ function convertDirectoryToOpenAPISchemas(dirPath) {
     produces: ["application/json"],
     paths: {},
     definitions: {},
+    tags: [], // Initialize tags array
   };
 
   const files = fs.readdirSync(dirPath).filter((file) => file.endsWith(".ts"));
   files.forEach((file) => {
     const filePath = path.join(dirPath, file);
     const fileContent = fs.readFileSync(filePath, "utf-8");
+
+    // Extract file-level JSDoc description for tags
+    const { description } = extractFileJsDocDescription(fileContent);
+    const tagName = path.basename(file, ".ts");
+    schema.tags.push({
+      name: tagName,
+      description: description || `${tagName} related APIs`,
+    });
 
     const definitions = convertDefinitions(fileContent, schema.definitions);
     schema.definitions = { ...schema.definitions, ...definitions };
@@ -65,6 +74,34 @@ function convertDirectoryToOpenAPISchemas(dirPath) {
   });
 
   return schema;
+}
+
+/**
+ * Extracts file-level JSDoc description from a TypeScript file.
+ * @param {string} fileContent - The content of the TypeScript file.
+ * @returns {object} - An object containing `description`.
+ */
+function extractFileJsDocDescription(fileContent) {
+  const sourceFile = ts.createSourceFile(
+    "temp.ts",
+    fileContent,
+    ts.ScriptTarget.Latest,
+    true
+  );
+
+  let description = "";
+
+  ts.forEachChild(sourceFile, (node) => {
+    if (ts.isJSDoc(node)) {
+      node.tags?.forEach((tag) => {
+        if (tag.tagName.text === "description") {
+          description = tag.comment || "";
+        }
+      });
+    }
+  });
+
+  return { description };
 }
 
 /**
@@ -515,5 +552,5 @@ function extractJsDocDescription(node) {
   return { summary, description, default: defaultValue };
 }
 
-const schemas = convertDirectoryToOpenAPISchemas("./api");
+const schemas = convertDirectoryToOpenAPISchemas("./define");
 fs.writeFileSync("./schema.json", JSON.stringify(schemas, null, 2));
