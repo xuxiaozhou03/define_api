@@ -1,7 +1,6 @@
 import fs from "fs";
 import path from "path";
 import ts from "typescript";
-import util from "util"; // Add this import for safe inspection of objects
 
 // ...existing code...
 
@@ -231,10 +230,16 @@ function extractProperties(typeNode, definitions) {
       if (ts.isPropertySignature(member) && member.name) {
         const propertyName = member.name.text;
 
+        // Extract JSDoc for default value
+        const { default: defaultValue } = extractJsDocDescription(member);
+
         // Use resolveSharedType to handle both simple and complex types
         const resolvedType = resolveSharedType(member.type, definitions);
 
-        properties[propertyName] = resolvedType.schema || resolvedType;
+        properties[propertyName] = {
+          ...(resolvedType.schema || resolvedType),
+          ...(defaultValue !== undefined ? { default: defaultValue } : {}),
+        };
       }
     });
   }
@@ -253,8 +258,16 @@ function extractResponse(typeNode, sharedTypes) {
     typeNode.members.forEach((member) => {
       if (ts.isPropertySignature(member) && member.name) {
         const statusCode = member.name.text;
+
+        // Extract JSDoc for default value
+        const { default: defaultValue } = extractJsDocDescription(member);
+
         const responseType = resolveSharedType(member.type, sharedTypes);
-        responses[statusCode] = responseType;
+
+        responses[statusCode] = {
+          ...(responseType.schema || responseType),
+          ...(defaultValue !== undefined ? { default: defaultValue } : {}),
+        };
       }
     });
   }
@@ -274,6 +287,10 @@ function extractParameters(typeNode, sharedTypes, type) {
     typeNode.members.forEach((member) => {
       if (ts.isPropertySignature(member) && member.name) {
         const propertyName = member.name.text;
+
+        // Extract JSDoc for default value
+        const { default: defaultValue } = extractJsDocDescription(member);
+
         const resolvedType = resolveSharedType(member.type, sharedTypes);
 
         // Determine if the property is required
@@ -286,6 +303,7 @@ function extractParameters(typeNode, sharedTypes, type) {
           ...(resolvedType.schema
             ? { schema: resolvedType.schema } // Use `schema` for complex types
             : resolvedType), // Use `type` directly for simple types
+          ...(defaultValue !== undefined ? { default: defaultValue } : {}),
           description: member.jsDoc?.[0]?.comment || "", // Extract description from JSDoc
         });
       }
@@ -426,26 +444,29 @@ function capitalize(str) {
 }
 
 /**
- * Extracts JSDoc summary and description from a TypeScript node.
+ * Extracts JSDoc summary, description, and default value from a TypeScript node.
  * @param {ts.Node} node - The TypeScript node.
- * @returns {object} - An object containing `summary` and `description`.
+ * @returns {object} - An object containing `summary`, `description`, and `default`.
  */
 function extractJsDocDescription(node) {
   const jsDoc = node.jsDoc && node.jsDoc[0];
-  if (!jsDoc) return { summary: "", description: "" };
+  if (!jsDoc) return { summary: "", description: "", default: undefined };
 
   const summary = jsDoc.comment || "";
   let description = "";
+  let defaultValue;
 
   if (jsDoc.tags) {
     jsDoc.tags.forEach((tag) => {
       if (tag.tagName.text === "description") {
         description = tag.comment || "";
+      } else if (tag.tagName.text === "default") {
+        defaultValue = tag.comment || undefined;
       }
     });
   }
 
-  return { summary, description };
+  return { summary, description, default: defaultValue };
 }
 
 const schemas = convertDirectoryToOpenAPISchemas("./api");

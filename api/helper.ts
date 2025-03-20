@@ -3,6 +3,7 @@ export type Api<
     url: string;
     method: "GET" | "POST" | "PUT" | "DELETE";
     paths?: Record<string, string | number>;
+    query?: Record<string, string | number>;
     params?: Record<string, string | number>;
     body?: Record<string, unknown>;
     response: {
@@ -17,6 +18,7 @@ export type Api<
   method: T["method"];
   paths: T["paths"];
   params: T["params"];
+  query: T["query"];
   body: T["body"];
   response: T["response"];
 };

@@ -3,7 +3,6 @@ import { Api } from "./helper";
 
 /**
  * 获取用户
- * @default 111
  */
 export type GetUser = Api<{
   url: "/user/{userId}";
@@ -11,12 +10,9 @@ export type GetUser = Api<{
   paths: {
     /**
      * 用户id
+     * @default 1
      */
     userId: string;
-    /**
-     * 逗你玩
-     */
-    name?: string;
   };
   response: { 200: User };
 }>;
@@ -32,6 +28,10 @@ export type CreateUser = Api<{
      * 用户
      */
     user: Omit<User, "id">;
+    /**
+     * 测试可选字段
+     */
+    other?: number;
   };
   response: { 201: User };
 }>;
@@ -47,6 +47,9 @@ export type UpdateUser = Api<{
      * 用户id
      */
     userId: string;
+  };
+  query: {
+    name: string;
   };
   body: {
     /**

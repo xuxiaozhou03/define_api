@@ -17,22 +17,13 @@
             "in": "path",
             "required": true,
             "type": "string",
+            "default": "1",
             "description": "用户id"
-          },
-          {
-            "name": "name",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "description": "逗你玩"
           }
         ],
         "responses": {
           "200": {
-            "description": "Shared type reference",
-            "schema": {
-              "$ref": "#/definitions/User"
-            }
+            "$ref": "#/definitions/User"
           }
         }
       },
@@ -60,10 +51,7 @@
         ],
         "responses": {
           "201": {
-            "description": "Shared type reference",
-            "schema": {
-              "$ref": "#/definitions/User"
-            }
+            "$ref": "#/definitions/User"
           }
         }
       },
@@ -82,10 +70,7 @@
         ],
         "responses": {
           "204": {
-            "description": "Complex type",
-            "schema": {
-              "type": "object"
-            }
+            "type": "object"
           }
         }
       }
@@ -104,14 +89,18 @@
               "$ref": "#/definitions/UserWithoutId"
             },
             "description": "用户"
+          },
+          {
+            "name": "other",
+            "in": "formData",
+            "required": false,
+            "type": "number",
+            "description": "测试可选字段"
           }
         ],
         "responses": {
           "201": {
-            "description": "Shared type reference",
-            "schema": {
-              "$ref": "#/definitions/User"
-            }
+            "$ref": "#/definitions/User"
           }
         }
       }
@@ -127,7 +116,8 @@
       "type": "object",
       "properties": {
         "id": {
-          "type": "string"
+          "type": "string",
+          "default": "2"
         },
         "name": {
           "type": "string"
