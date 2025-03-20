@@ -1,49 +1,58 @@
 # define_api
 
-> 接口定义作为项目挺重要的环节，可视化工具对程序员有点增加复杂度
+> 接口定义是项目开发中非常重要的环节，可视化工具虽然方便，但可能会增加程序员的复杂度。
 
-> 直接撸代码，生成文档后对着文档开发更符合程序员体质
+> 直接编写代码并生成文档后对照开发，更符合程序员的工作习惯。
 
-> 本项目都是通过 github copilot 生成代码，而且项目还处于特别早期阶段
+> 本项目完全通过 GitHub Copilot 生成代码，目前仍处于早期开发阶段。
 
-## roadmap
+## Roadmap
 
-1. 通过 typescript 定义接口
-   1.1 缺少 query
-2. 生成 openapi schema
-   2.1 支持 Typescript 的更多泛型（目前支持 Omit）
-   2.2 支持 枚举
-   2.3 支持 数组等复杂类型
-3. 生成文档
-   3.1 xx
-4. 生成前端接口定义（通过 swagger-typescript-api 轻松搞定）
-5. 自动测试接口返回数据
-6. 版本管理（git/或者 release）
+- 使用 TypeScript 定义接口
+  - 增加对 query 参数的支持
+- 生成 OpenAPI Schema
+  - 支持更多 TypeScript 泛型（目前支持 Omit）
+  - 支持枚举类型
+  - 支持数组等复杂类型
+- 生成文档
+  - 待完善
+- 生成前端接口定义（通过 swagger-typescript-api 实现）
+- 自动化测试接口返回数据
+- 版本管理（通过 Git 或 Release 实现）
 
-## 效果
+## 效果展示
 
-1. 定义接口到 openapi schema
-   <img src="./docs/define2schema.png"/>
+1. 从接口定义生成 OpenAPI Schema
+   <img src="./docs/define2schema.png" alt="接口定义到 OpenAPI Schema 的效果图"/>
 2. 生成前端代码
-   <img src="./docs/ts.png"/>
+   <img src="./docs/ts.png" alt="生成前端代码的效果图"/>
 3. 生成文档
-   <img src="./docs/doc.png" />
+   <img src="./docs/doc.png" alt="生成文档的效果图"/>
 
-## 定义接口
+## 脚本
+
+```shell
+# 生成 schema
+node cli.js
+
+# 生成 typescript 代码npx swagger-typescript-api -p ./schema.json -o ./result
+```
+
+## 定义接口示例
 
 ```typescript
 import { User } from "./common";
 import { Api } from "./helper";
 
 /**
- * 获取用户
+ * 获取用户信息
  */
 export type GetUser = Api<{
   url: "/user/{userId}";
   method: "GET";
   paths: {
     /**
-     * 用户id
+     * 用户 ID
      */
     userId: string;
   };
@@ -51,26 +60,20 @@ export type GetUser = Api<{
 }>;
 ```
 
-## 运行脚本
-
-```shell
-node cli.js
-```
-
-## 生成 openapi schema
+## 生成 OpenAPI Schema 示例
 
 ```json
 {
   "swagger": "2.0",
   "info": {
-    "title": "api",
+    "title": "API",
     "version": "1.0.0"
   },
   "produces": ["application/json"],
   "paths": {
     "/user/{userId}": {
       "get": {
-        "summary": "获取用户",
+        "summary": "获取用户信息",
         "description": "",
         "produces": ["application/json"],
         "parameters": [
@@ -79,19 +82,19 @@ node cli.js
             "in": "path",
             "required": true,
             "type": "string",
-            "description": "用户id"
+            "description": "用户 ID"
           },
           {
             "name": "name",
             "in": "path",
             "required": true,
             "type": "string",
-            "description": "逗你玩"
+            "description": "示例参数"
           }
         ],
         "responses": {
           "200": {
-            "description": "Shared type reference",
+            "description": "共享类型引用",
             "schema": {
               "$ref": "#/definitions/User"
             }
@@ -120,7 +123,7 @@ node cli.js
           "enum": ["man", "woman"]
         }
       },
-      "description": ""
+      "description": "用户信息"
     },
     "UserWithoutId": {
       "type": "object",
@@ -133,7 +136,7 @@ node cli.js
           "enum": ["man", "woman"]
         }
       },
-      "description": "Omit type based on User without id"
+      "description": "基于 User 类型的 Omit 示例（去除 ID）"
     }
   }
 }
