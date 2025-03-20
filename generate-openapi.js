@@ -26,7 +26,7 @@ const openapiSchema = {
 
 function extractSimplifiedAST(node, sourceFile) {
   const kind = ts.SyntaxKind[node.kind];
-  if (["EndOfFileToken"].includes(kind)) {
+  if (["EndOfFileToken", "ExportKeyword"].includes(kind)) {
     return null;
   }
 
@@ -39,6 +39,7 @@ function extractSimplifiedAST(node, sourceFile) {
       "TypeLiteral",
       "TypeReference",
       "ImportDeclaration",
+      "ImportClause",
     ].includes(kind)
       ? undefined
       : node.getText(sourceFile),
@@ -46,9 +47,37 @@ function extractSimplifiedAST(node, sourceFile) {
     children: [],
   };
 
+  if (kind === "LiteralType") {
+    if (simplifiedNode.children.length === 0) {
+      simplifiedNode.children = undefined;
+    }
+    return simplifiedNode;
+  }
+
   ts.forEachChild(node, (child) => {
     const childNode = extractSimplifiedAST(child, sourceFile);
     if (childNode) {
+      if (childNode.kind === "Identifier") {
+        simplifiedNode.text = childNode.text;
+        return;
+      }
+      if (childNode.kind === "TypeReference" && childNode.text === "Api") {
+        simplifiedNode.children = childNode.children[0].children;
+        simplifiedNode.kind = "API";
+        return;
+      }
+
+      if (
+        ["ImportSpecifier", "StringLiteral", "ExportKeyword"].includes(
+          childNode.kind
+        )
+      ) {
+        childNode.children = undefined;
+      }
+      if (childNode.kind === "NamedImports") {
+        childNode.text = undefined;
+      }
+
       simplifiedNode.children.push(childNode);
     }
   });
@@ -58,6 +87,5 @@ function extractSimplifiedAST(node, sourceFile) {
 
 // 遍历AST
 const tree = extractSimplifiedAST(source, source);
-console.log(tree);
 
 fs.writeFileSync("./ast.json", JSON.stringify(tree, null, 2));

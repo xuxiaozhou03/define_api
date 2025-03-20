@@ -6,22 +6,13 @@
       "children": [
         {
           "kind": "ImportClause",
-          "text": "{ User }",
           "children": [
             {
               "kind": "NamedImports",
-              "text": "{ User }",
               "children": [
                 {
                   "kind": "ImportSpecifier",
-                  "text": "User",
-                  "children": [
-                    {
-                      "kind": "Identifier",
-                      "text": "User",
-                      "children": []
-                    }
-                  ]
+                  "text": "User"
                 }
               ]
             }
@@ -29,8 +20,7 @@
         },
         {
           "kind": "StringLiteral",
-          "text": "\"./common\"",
-          "children": []
+          "text": "\"./common\""
         }
       ]
     },
@@ -39,22 +29,13 @@
       "children": [
         {
           "kind": "ImportClause",
-          "text": "{ Api }",
           "children": [
             {
               "kind": "NamedImports",
-              "text": "{ Api }",
               "children": [
                 {
                   "kind": "ImportSpecifier",
-                  "text": "Api",
-                  "children": [
-                    {
-                      "kind": "Identifier",
-                      "text": "Api",
-                      "children": []
-                    }
-                  ]
+                  "text": "Api"
                 }
               ]
             }
@@ -62,40 +43,67 @@
         },
         {
           "kind": "StringLiteral",
-          "text": "\"./helper\"",
-          "children": []
+          "text": "\"./helper\""
         }
       ]
     },
     {
-      "kind": "TypeAliasDeclaration",
+      "kind": "API",
+      "text": "GetUser",
       "comments": {
         "title": "获取用户",
         "default": "111"
       },
       "children": [
         {
-          "kind": "ExportKeyword",
-          "text": "export",
-          "comments": {
-            "title": "获取用户",
-            "default": "111"
-          },
-          "children": []
-        },
-        {
-          "kind": "Identifier",
-          "text": "GetUser",
-          "children": []
-        },
-        {
-          "kind": "TypeReference",
+          "kind": "PropertySignature",
+          "text": "url",
           "children": [
             {
-              "kind": "Identifier",
-              "text": "Api",
-              "children": []
-            },
+              "kind": "LiteralType",
+              "text": "\"/users/{userId}\""
+            }
+          ]
+        },
+        {
+          "kind": "PropertySignature",
+          "text": "method",
+          "children": [
+            {
+              "kind": "LiteralType",
+              "text": "\"GET\""
+            }
+          ]
+        },
+        {
+          "kind": "PropertySignature",
+          "text": "paths",
+          "children": [
+            {
+              "kind": "TypeLiteral",
+              "children": [
+                {
+                  "kind": "PropertySignature",
+                  "text": "userId",
+                  "comments": {
+                    "title": "用户id"
+                  },
+                  "children": [
+                    {
+                      "kind": "StringKeyword",
+                      "text": "string",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "PropertySignature",
+          "text": "response",
+          "children": [
             {
               "kind": "TypeLiteral",
               "children": [
@@ -103,112 +111,14 @@
                   "kind": "PropertySignature",
                   "children": [
                     {
-                      "kind": "Identifier",
-                      "text": "url",
+                      "kind": "FirstLiteralToken",
+                      "text": "200",
                       "children": []
                     },
                     {
-                      "kind": "LiteralType",
-                      "text": "\"/users/{userId}\"",
-                      "children": [
-                        {
-                          "kind": "StringLiteral",
-                          "text": "\"/users/{userId}\"",
-                          "children": []
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "kind": "PropertySignature",
-                  "children": [
-                    {
-                      "kind": "Identifier",
-                      "text": "method",
+                      "kind": "TypeReference",
+                      "text": "User",
                       "children": []
-                    },
-                    {
-                      "kind": "LiteralType",
-                      "text": "\"GET\"",
-                      "children": [
-                        {
-                          "kind": "StringLiteral",
-                          "text": "\"GET\"",
-                          "children": []
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "kind": "PropertySignature",
-                  "children": [
-                    {
-                      "kind": "Identifier",
-                      "text": "paths",
-                      "children": []
-                    },
-                    {
-                      "kind": "TypeLiteral",
-                      "children": [
-                        {
-                          "kind": "PropertySignature",
-                          "comments": {
-                            "title": "用户id"
-                          },
-                          "children": [
-                            {
-                              "kind": "Identifier",
-                              "text": "userId",
-                              "comments": {
-                                "title": "用户id"
-                              },
-                              "children": []
-                            },
-                            {
-                              "kind": "StringKeyword",
-                              "text": "string",
-                              "children": []
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "kind": "PropertySignature",
-                  "children": [
-                    {
-                      "kind": "Identifier",
-                      "text": "response",
-                      "children": []
-                    },
-                    {
-                      "kind": "TypeLiteral",
-                      "children": [
-                        {
-                          "kind": "PropertySignature",
-                          "children": [
-                            {
-                              "kind": "FirstLiteralToken",
-                              "text": "200",
-                              "children": []
-                            },
-                            {
-                              "kind": "TypeReference",
-                              "children": [
-                                {
-                                  "kind": "Identifier",
-                                  "text": "User",
-                                  "children": []
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
                     }
                   ]
                 }
@@ -219,32 +129,71 @@
       ]
     },
     {
-      "kind": "TypeAliasDeclaration",
+      "kind": "API",
+      "text": "CreateUser",
       "comments": {
         "title": "创建用户"
       },
       "children": [
         {
-          "kind": "ExportKeyword",
-          "text": "export",
-          "comments": {
-            "title": "创建用户"
-          },
-          "children": []
-        },
-        {
-          "kind": "Identifier",
-          "text": "CreateUser",
-          "children": []
-        },
-        {
-          "kind": "TypeReference",
+          "kind": "PropertySignature",
+          "text": "url",
           "children": [
             {
-              "kind": "Identifier",
-              "text": "Api",
-              "children": []
-            },
+              "kind": "LiteralType",
+              "text": "\"/users\""
+            }
+          ]
+        },
+        {
+          "kind": "PropertySignature",
+          "text": "method",
+          "children": [
+            {
+              "kind": "LiteralType",
+              "text": "\"POST\""
+            }
+          ]
+        },
+        {
+          "kind": "PropertySignature",
+          "text": "body",
+          "children": [
+            {
+              "kind": "TypeLiteral",
+              "children": [
+                {
+                  "kind": "PropertySignature",
+                  "text": "user",
+                  "comments": {
+                    "title": "用户"
+                  },
+                  "children": [
+                    {
+                      "kind": "TypeReference",
+                      "text": "Omit",
+                      "children": [
+                        {
+                          "kind": "TypeReference",
+                          "text": "User",
+                          "children": []
+                        },
+                        {
+                          "kind": "LiteralType",
+                          "text": "\"id\""
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "PropertySignature",
+          "text": "response",
+          "children": [
             {
               "kind": "TypeLiteral",
               "children": [
@@ -252,138 +201,14 @@
                   "kind": "PropertySignature",
                   "children": [
                     {
-                      "kind": "Identifier",
-                      "text": "url",
+                      "kind": "FirstLiteralToken",
+                      "text": "201",
                       "children": []
                     },
                     {
-                      "kind": "LiteralType",
-                      "text": "\"/users\"",
-                      "children": [
-                        {
-                          "kind": "StringLiteral",
-                          "text": "\"/users\"",
-                          "children": []
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "kind": "PropertySignature",
-                  "children": [
-                    {
-                      "kind": "Identifier",
-                      "text": "method",
+                      "kind": "TypeReference",
+                      "text": "User",
                       "children": []
-                    },
-                    {
-                      "kind": "LiteralType",
-                      "text": "\"POST\"",
-                      "children": [
-                        {
-                          "kind": "StringLiteral",
-                          "text": "\"POST\"",
-                          "children": []
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "kind": "PropertySignature",
-                  "children": [
-                    {
-                      "kind": "Identifier",
-                      "text": "body",
-                      "children": []
-                    },
-                    {
-                      "kind": "TypeLiteral",
-                      "children": [
-                        {
-                          "kind": "PropertySignature",
-                          "comments": {
-                            "title": "用户"
-                          },
-                          "children": [
-                            {
-                              "kind": "Identifier",
-                              "text": "user",
-                              "comments": {
-                                "title": "用户"
-                              },
-                              "children": []
-                            },
-                            {
-                              "kind": "TypeReference",
-                              "children": [
-                                {
-                                  "kind": "Identifier",
-                                  "text": "Omit",
-                                  "children": []
-                                },
-                                {
-                                  "kind": "TypeReference",
-                                  "children": [
-                                    {
-                                      "kind": "Identifier",
-                                      "text": "User",
-                                      "children": []
-                                    }
-                                  ]
-                                },
-                                {
-                                  "kind": "LiteralType",
-                                  "text": "\"id\"",
-                                  "children": [
-                                    {
-                                      "kind": "StringLiteral",
-                                      "text": "\"id\"",
-                                      "children": []
-                                    }
-                                  ]
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "kind": "PropertySignature",
-                  "children": [
-                    {
-                      "kind": "Identifier",
-                      "text": "response",
-                      "children": []
-                    },
-                    {
-                      "kind": "TypeLiteral",
-                      "children": [
-                        {
-                          "kind": "PropertySignature",
-                          "children": [
-                            {
-                              "kind": "FirstLiteralToken",
-                              "text": "201",
-                              "children": []
-                            },
-                            {
-                              "kind": "TypeReference",
-                              "children": [
-                                {
-                                  "kind": "Identifier",
-                                  "text": "User",
-                                  "children": []
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
                     }
                   ]
                 }
@@ -394,32 +219,96 @@
       ]
     },
     {
-      "kind": "TypeAliasDeclaration",
+      "kind": "API",
+      "text": "UpdateUser",
       "comments": {
         "title": "更新用户"
       },
       "children": [
         {
-          "kind": "ExportKeyword",
-          "text": "export",
-          "comments": {
-            "title": "更新用户"
-          },
-          "children": []
-        },
-        {
-          "kind": "Identifier",
-          "text": "UpdateUser",
-          "children": []
-        },
-        {
-          "kind": "TypeReference",
+          "kind": "PropertySignature",
+          "text": "url",
           "children": [
             {
-              "kind": "Identifier",
-              "text": "Api",
-              "children": []
-            },
+              "kind": "LiteralType",
+              "text": "\"/user/{userId}\""
+            }
+          ]
+        },
+        {
+          "kind": "PropertySignature",
+          "text": "method",
+          "children": [
+            {
+              "kind": "LiteralType",
+              "text": "\"PUT\""
+            }
+          ]
+        },
+        {
+          "kind": "PropertySignature",
+          "text": "paths",
+          "children": [
+            {
+              "kind": "TypeLiteral",
+              "children": [
+                {
+                  "kind": "PropertySignature",
+                  "text": "userId",
+                  "comments": {
+                    "title": "用户id"
+                  },
+                  "children": [
+                    {
+                      "kind": "StringKeyword",
+                      "text": "string",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "PropertySignature",
+          "text": "body",
+          "children": [
+            {
+              "kind": "TypeLiteral",
+              "children": [
+                {
+                  "kind": "PropertySignature",
+                  "text": "user",
+                  "comments": {
+                    "title": "用户"
+                  },
+                  "children": [
+                    {
+                      "kind": "TypeReference",
+                      "text": "Omit",
+                      "children": [
+                        {
+                          "kind": "TypeReference",
+                          "text": "User",
+                          "children": []
+                        },
+                        {
+                          "kind": "LiteralType",
+                          "text": "\"id\""
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "PropertySignature",
+          "text": "response",
+          "children": [
             {
               "kind": "TypeLiteral",
               "children": [
@@ -427,174 +316,14 @@
                   "kind": "PropertySignature",
                   "children": [
                     {
-                      "kind": "Identifier",
-                      "text": "url",
+                      "kind": "FirstLiteralToken",
+                      "text": "201",
                       "children": []
                     },
                     {
-                      "kind": "LiteralType",
-                      "text": "\"/user/{userId}\"",
-                      "children": [
-                        {
-                          "kind": "StringLiteral",
-                          "text": "\"/user/{userId}\"",
-                          "children": []
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "kind": "PropertySignature",
-                  "children": [
-                    {
-                      "kind": "Identifier",
-                      "text": "method",
+                      "kind": "TypeReference",
+                      "text": "User",
                       "children": []
-                    },
-                    {
-                      "kind": "LiteralType",
-                      "text": "\"PUT\"",
-                      "children": [
-                        {
-                          "kind": "StringLiteral",
-                          "text": "\"PUT\"",
-                          "children": []
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "kind": "PropertySignature",
-                  "children": [
-                    {
-                      "kind": "Identifier",
-                      "text": "paths",
-                      "children": []
-                    },
-                    {
-                      "kind": "TypeLiteral",
-                      "children": [
-                        {
-                          "kind": "PropertySignature",
-                          "comments": {
-                            "title": "用户id"
-                          },
-                          "children": [
-                            {
-                              "kind": "Identifier",
-                              "text": "userId",
-                              "comments": {
-                                "title": "用户id"
-                              },
-                              "children": []
-                            },
-                            {
-                              "kind": "StringKeyword",
-                              "text": "string",
-                              "children": []
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "kind": "PropertySignature",
-                  "children": [
-                    {
-                      "kind": "Identifier",
-                      "text": "body",
-                      "children": []
-                    },
-                    {
-                      "kind": "TypeLiteral",
-                      "children": [
-                        {
-                          "kind": "PropertySignature",
-                          "comments": {
-                            "title": "用户"
-                          },
-                          "children": [
-                            {
-                              "kind": "Identifier",
-                              "text": "user",
-                              "comments": {
-                                "title": "用户"
-                              },
-                              "children": []
-                            },
-                            {
-                              "kind": "TypeReference",
-                              "children": [
-                                {
-                                  "kind": "Identifier",
-                                  "text": "Omit",
-                                  "children": []
-                                },
-                                {
-                                  "kind": "TypeReference",
-                                  "children": [
-                                    {
-                                      "kind": "Identifier",
-                                      "text": "User",
-                                      "children": []
-                                    }
-                                  ]
-                                },
-                                {
-                                  "kind": "LiteralType",
-                                  "text": "\"id\"",
-                                  "children": [
-                                    {
-                                      "kind": "StringLiteral",
-                                      "text": "\"id\"",
-                                      "children": []
-                                    }
-                                  ]
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "kind": "PropertySignature",
-                  "children": [
-                    {
-                      "kind": "Identifier",
-                      "text": "response",
-                      "children": []
-                    },
-                    {
-                      "kind": "TypeLiteral",
-                      "children": [
-                        {
-                          "kind": "PropertySignature",
-                          "children": [
-                            {
-                              "kind": "FirstLiteralToken",
-                              "text": "201",
-                              "children": []
-                            },
-                            {
-                              "kind": "TypeReference",
-                              "children": [
-                                {
-                                  "kind": "Identifier",
-                                  "text": "User",
-                                  "children": []
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
                     }
                   ]
                 }
@@ -605,32 +334,61 @@
       ]
     },
     {
-      "kind": "TypeAliasDeclaration",
+      "kind": "API",
+      "text": "DeleteUser",
       "comments": {
         "title": "删除用户"
       },
       "children": [
         {
-          "kind": "ExportKeyword",
-          "text": "export",
-          "comments": {
-            "title": "删除用户"
-          },
-          "children": []
-        },
-        {
-          "kind": "Identifier",
-          "text": "DeleteUser",
-          "children": []
-        },
-        {
-          "kind": "TypeReference",
+          "kind": "PropertySignature",
+          "text": "url",
           "children": [
             {
-              "kind": "Identifier",
-              "text": "Api",
-              "children": []
-            },
+              "kind": "LiteralType",
+              "text": "\"/user/{userId}\""
+            }
+          ]
+        },
+        {
+          "kind": "PropertySignature",
+          "text": "method",
+          "children": [
+            {
+              "kind": "LiteralType",
+              "text": "\"DELETE\""
+            }
+          ]
+        },
+        {
+          "kind": "PropertySignature",
+          "text": "paths",
+          "children": [
+            {
+              "kind": "TypeLiteral",
+              "children": [
+                {
+                  "kind": "PropertySignature",
+                  "text": "userId",
+                  "comments": {
+                    "title": "用户id"
+                  },
+                  "children": [
+                    {
+                      "kind": "StringKeyword",
+                      "text": "string",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "PropertySignature",
+          "text": "response",
+          "children": [
             {
               "kind": "TypeLiteral",
               "children": [
@@ -638,113 +396,13 @@
                   "kind": "PropertySignature",
                   "children": [
                     {
-                      "kind": "Identifier",
-                      "text": "url",
+                      "kind": "FirstLiteralToken",
+                      "text": "204",
                       "children": []
                     },
                     {
                       "kind": "LiteralType",
-                      "text": "\"/user/{userId}\"",
-                      "children": [
-                        {
-                          "kind": "StringLiteral",
-                          "text": "\"/user/{userId}\"",
-                          "children": []
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "kind": "PropertySignature",
-                  "children": [
-                    {
-                      "kind": "Identifier",
-                      "text": "method",
-                      "children": []
-                    },
-                    {
-                      "kind": "LiteralType",
-                      "text": "\"DELETE\"",
-                      "children": [
-                        {
-                          "kind": "StringLiteral",
-                          "text": "\"DELETE\"",
-                          "children": []
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "kind": "PropertySignature",
-                  "children": [
-                    {
-                      "kind": "Identifier",
-                      "text": "paths",
-                      "children": []
-                    },
-                    {
-                      "kind": "TypeLiteral",
-                      "children": [
-                        {
-                          "kind": "PropertySignature",
-                          "comments": {
-                            "title": "用户id"
-                          },
-                          "children": [
-                            {
-                              "kind": "Identifier",
-                              "text": "userId",
-                              "comments": {
-                                "title": "用户id"
-                              },
-                              "children": []
-                            },
-                            {
-                              "kind": "StringKeyword",
-                              "text": "string",
-                              "children": []
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "kind": "PropertySignature",
-                  "children": [
-                    {
-                      "kind": "Identifier",
-                      "text": "response",
-                      "children": []
-                    },
-                    {
-                      "kind": "TypeLiteral",
-                      "children": [
-                        {
-                          "kind": "PropertySignature",
-                          "children": [
-                            {
-                              "kind": "FirstLiteralToken",
-                              "text": "204",
-                              "children": []
-                            },
-                            {
-                              "kind": "LiteralType",
-                              "text": "null",
-                              "children": [
-                                {
-                                  "kind": "NullKeyword",
-                                  "text": "null",
-                                  "children": []
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
+                      "text": "null"
                     }
                   ]
                 }
