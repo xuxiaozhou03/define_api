@@ -1,45 +1,33 @@
-# define_api
+# dapi
 
-> 接口定义是项目开发中非常重要的环节，可视化工具虽然方便，但可能会增加程序员的复杂度。
+`dapi` 是一个基于 TypeScript 的接口定义工具，支持从接口定义生成 OpenAPI Schema、前端代码和文档。
 
-> 直接编写代码并生成文档后对照开发，更符合程序员的工作习惯。
+## 特性
 
-> 本项目完全通过 GitHub Copilot 生成代码，目前仍处于早期开发阶段。
+- **接口定义**：使用 TypeScript 定义接口，支持泛型、枚举、复杂类型等。
+- **Schema 生成**：从接口定义生成 OpenAPI Schema。
+- **代码生成**：通过 `swagger-typescript-api` 生成前端接口代码。
+- **文档生成**：自动生成接口文档。
+- **自动化测试**：支持接口返回数据的自动化测试。
+- **版本管理**：通过 Git 或 Release 管理接口版本。
 
-## Roadmap
+## 使用方法
 
-- 使用 TypeScript 定义接口
-  - 增加对 query 参数的支持
-- 生成 OpenAPI Schema
-  - 支持更多 TypeScript 泛型（目前支持 Omit）
-  - 支持枚举类型
-  - 支持数组等复杂类型
-- 生成文档
-  - 待完善
-- 生成前端接口定义（通过 swagger-typescript-api 实现）
-- 自动化测试接口返回数据
-- 版本管理（通过 Git 或 Release 实现）
-
-## 效果展示
-
-1. 从接口定义生成 OpenAPI Schema
-   <img src="./docs/define2schema.png" alt="接口定义到 OpenAPI Schema 的效果图"/>
-2. 生成前端代码
-   <img src="./docs/ts.png" alt="生成前端代码的效果图"/>
-3. 生成文档
-   <img src="./docs/doc.png" alt="生成文档的效果图"/>
-
-## 脚本
+### 生成 OpenAPI Schema
 
 ```shell
-# 生成 schema
 node cli.js
+```
 
-# 生成 typescript 代码
+### 生成前端代码
+
+```shell
 npx swagger-typescript-api -p ./schema.json -o ./result
 ```
 
-## 定义接口示例
+## 示例
+
+### 定义接口
 
 ```typescript
 import { User } from "./common";
@@ -61,7 +49,7 @@ export type GetUser = Api<{
 }>;
 ```
 
-## 生成 OpenAPI Schema 示例
+### 生成的 OpenAPI Schema
 
 ```json
 {
@@ -70,13 +58,10 @@ export type GetUser = Api<{
     "title": "API",
     "version": "1.0.0"
   },
-  "produces": ["application/json"],
   "paths": {
     "/user/{userId}": {
       "get": {
         "summary": "获取用户信息",
-        "description": "",
-        "produces": ["application/json"],
         "parameters": [
           {
             "name": "userId",
@@ -84,18 +69,11 @@ export type GetUser = Api<{
             "required": true,
             "type": "string",
             "description": "用户 ID"
-          },
-          {
-            "name": "name",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "description": "示例参数"
           }
         ],
         "responses": {
           "200": {
-            "description": "共享类型引用",
+            "description": "用户信息",
             "schema": {
               "$ref": "#/definitions/User"
             }
@@ -105,40 +83,22 @@ export type GetUser = Api<{
     }
   },
   "definitions": {
-    "Sex": {
-      "type": "string",
-      "enum": ["man", "woman"],
-      "description": "性别枚举"
-    },
     "User": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "sex": {
-          "type": "string",
-          "enum": ["man", "woman"]
-        }
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "sex": { "type": "string", "enum": ["man", "woman"] }
       },
       "description": "用户信息"
-    },
-    "UserWithoutId": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "sex": {
-          "type": "string",
-          "enum": ["man", "woman"]
-        }
-      },
-      "description": "基于 User 类型的 Omit 示例（去除 ID）"
     }
   }
 }
 ```
+
+## Roadmap
+
+- 增强 TypeScript 泛型支持
+- 支持更多复杂类型（如数组、嵌套对象）
+- 完善文档生成功能
+- 增加自动化测试和版本管理功能
