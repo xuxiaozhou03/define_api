@@ -6,13 +6,17 @@ import { Api } from "./helper";
  * @default 111
  */
 export type GetUser = Api<{
-  url: "/users/{userId}";
+  url: "/user/{userId}";
   method: "GET";
   paths: {
     /**
      * 用户id
      */
     userId: string;
+    /**
+     * 逗你玩
+     */
+    name?: string;
   };
   response: { 200: User };
 }>;
@@ -55,6 +59,7 @@ export type UpdateUser = Api<{
 
 /**
  * 删除用户
+ * @description 删除用户描述
  */
 export type DeleteUser = Api<{
   url: "/user/{userId}";

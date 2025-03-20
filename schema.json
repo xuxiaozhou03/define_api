@@ -1,0 +1,156 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "api",
+    "version": "1.0.0"
+  },
+  "produces": ["application/json"],
+  "paths": {
+    "/user/{userId}": {
+      "get": {
+        "summary": "获取用户",
+        "description": "",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "用户id"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "逗你玩"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Shared type reference",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "更新用户",
+        "description": "",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "用户id"
+          },
+          {
+            "name": "user",
+            "in": "formData",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserWithoutId"
+            },
+            "description": "用户"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Shared type reference",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "删除用户",
+        "description": "删除用户描述",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "用户id"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Complex type",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/users": {
+      "post": {
+        "summary": "创建用户",
+        "description": "",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "formData",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserWithoutId"
+            },
+            "description": "用户"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Shared type reference",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Sex": {
+      "type": "string",
+      "enum": ["man", "woman"],
+      "description": "性别枚举"
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "sex": {
+          "type": "string",
+          "enum": ["man", "woman"]
+        }
+      },
+      "description": ""
+    },
+    "UserWithoutId": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "sex": {
+          "type": "string",
+          "enum": ["man", "woman"]
+        }
+      },
+      "description": "Omit type based on User without id"
+    }
+  }
+}
